@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "stripe-setup-payment"
+version = "0.1.0"
+description = "Small app used to save payment details for future usage (for ex subscriptions)"
+authors = ["Ludovic Delauné <message@cartodev.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.75.0"
+stripe = "^2.67.0"
+python-dotenv = "^0.19.2"
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+pydantic = {extras = ["email"], version = "^1.9.0"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+stripe-setup-payment = "stripe_setup_payment.app:serve"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
