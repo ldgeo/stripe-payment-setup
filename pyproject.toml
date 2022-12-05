@@ -1,9 +1,10 @@
 [tool.poetry]
-name = "stripe-setup-payment"
+name = "stripe-payment-setup"
 version = "0.1.0"
 description = "Small app used to save payment details for future usage (for ex subscriptions)"
 readme = "README.md"
 authors = ["Ludovic Delauné <message@cartodev.com>"]
+repository = "https://github.com/ldgeo/stripe-payment-setup"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -17,9 +18,8 @@ pydantic = {extras = ["email"], version = "^1.9.0"}
 pytest = "^5.2"
 
 [tool.poetry.scripts]
-stripe-setup-payment = "stripe_setup_payment.app:serve"
+stripe-payment-setup = "stripe_payment_setup.app:serve"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-

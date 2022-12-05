@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from pydantic import EmailStr, constr
 
-from stripe_setup_payment.settings import Settings
+from .settings import Settings
 
 config = Settings()
 app = FastAPI(description="Setup new payments methods for customers")

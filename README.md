@@ -18,6 +18,6 @@ Copy `.env.sample` to `.env` and customize it
 
 ## Launch the service
 
-    poetry run stripe-setup-payment
+    poetry run stripe-payment-setup
 
 Jump to [http://localhost:4242/](http://localhost:4242/)
