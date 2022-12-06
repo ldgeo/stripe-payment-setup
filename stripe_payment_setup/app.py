@@ -8,24 +8,24 @@ from pydantic import EmailStr, constr
 from .settings import Settings
 
 config = Settings()
-app = FastAPI(description="Setup new payments methods for customers")
+app = FastAPI(
+    description="Setup new payments methods for customers",
+    include_in_schema=config.API_DOC
+)
 
 stripe.api_key = config.STRIPE_API_KEY
 
 
-@app.get("/", include_in_schema=False)
-def home():
-    return RedirectResponse("/docs")
-
-
-@app.get("/success", include_in_schema=False)
-def success():
+@app.get("/success")
+def success() -> str:
+    """Redirect page on success"""
     return "Payment method registered with success ✨"
 
 
-@app.get("/cancel", include_in_schema=False)
-def cancel():
-    return "Operation canceld 🚫"
+@app.get("/cancel")
+def cancel() -> str:
+    """Redirect page on cancel"""
+    return "Operation canceled 🚫"
 
 
 def session_url(customer_id: str, request: Request) -> str:
@@ -42,7 +42,10 @@ def session_url(customer_id: str, request: Request) -> str:
     return checkout_session.url
 
 
-@app.get("/email/{email}", summary="Setup a new payment method by email")
+@app.get(
+    "/email/{email}",
+    summary="Setup a new payment method by email"
+)
 def setup_new_method_by_email(email: EmailStr, request: Request):
     customer = stripe.Customer.list(email=email)
 
@@ -60,7 +63,10 @@ def setup_new_method_by_email(email: EmailStr, request: Request):
     return RedirectResponse(session_url(customer.data[0].id, request), status_code=303)
 
 
-@app.get("/id/{customer_id}", summary="Setup a new payment method by user id")
+@app.get(
+    "/id/{customer_id}",
+    summary="Setup a new payment method by user id"
+)
 def setup_new_method_by_id(customer_id: constr(regex=r"cus_.*"), request: Request):
     try:
         customer = stripe.Customer.retrieve(customer_id)

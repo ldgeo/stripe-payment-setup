@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     STRIPE_API_KEY: constr(regex=r'sk_.*')
     HOST: HttpUrl = 'http://127.0.0.1:4242'
     PAYMENT_METHOD_TYPES: List[str] = ['sepa_debit', 'card']
+    API_DOC: bool = False
 
     class Config:
         env_file = '.env'
