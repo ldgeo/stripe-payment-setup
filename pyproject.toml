@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stripe-payment-setup"
-version = "0.1.0"
+version = "0.1.1"
 description = "Small app used to save payment details for future usage (for ex subscriptions)"
 readme = "README.md"
 authors = ["Ludovic Delauné <message@cartodev.com>"]
